@@ -1860,3 +1860,2681 @@ Processing by ArticlesController#index as HTML
 Completed 200 OK in 88ms (Views: 75.8ms | ActiveRecord: 6.1ms | Allocations: 3932)
 
 
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (2.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+  [1m[35m (76.0ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255)) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `comments` CASCADE[0m
+  [1m[35m (73.7ms)[0m  [1m[35mCREATE TABLE `comments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `commenter` varchar(255), `body` text, `article_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255), INDEX `index_comments_on_article_id` (`article_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (226.6ms)[0m  [1m[35mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+  [1m[35m (73.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (11.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20220708181440)[0m
+  [1m[35m (10.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20220705073648),
+(20220708180339),
+(20220708181425);
+
+[0m
+  [1m[35m (63.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-07-11 10:44:46.784742', '2022-07-11 10:44:46.784742')[0m
+  [1m[36mTRANSACTION (25.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '21ade446c4a953e350b6bffd9411ce0540d2b627', '2022-07-11 10:44:46.871365', '2022-07-11 10:44:46.871365')[0m
+  [1m[36mTRANSACTION (20.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (18.9ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+Started GET "/" for 172.20.0.1 at 2022-07-11 10:46:32 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (5.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 152.6ms | Allocations: 3584)
+  Rendered layout layouts/application.html.erb (Duration: 713.0ms | Allocations: 39383)
+Completed 200 OK in 870ms (Views: 697.9ms | ActiveRecord: 36.0ms | Allocations: 47539)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 10:51:54 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+Filter chain halted as #<Proc:0x00007fa848bf6100 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms | Allocations: 117)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 10:52:02 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 191.6ms | Allocations: 6233)
+  Rendered articles/new.html.erb within layouts/application (Duration: 203.7ms | Allocations: 6509)
+  Rendered layout layouts/application.html.erb (Duration: 254.8ms | Allocations: 8715)
+Completed 200 OK in 508ms (Views: 262.8ms | ActiveRecord: 9.7ms | Allocations: 16035)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 10:52:13 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"6666666666", "body"=>"666666666666666", "status"=>"public"}, "commit"=>"Create Article"}
+Filter chain halted as #<Proc:0x00007fa848bf6100 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms | Allocations: 354)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 10:52:13 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"6666666666", "body"=>"666666666666666", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (9.4ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('6666666666', '666666666666666', '2022-07-11 10:52:13.865799', '2022-07-11 10:52:13.865799', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/1
+Completed 302 Found in 70ms (ActiveRecord: 23.0ms | Allocations: 3530)
+
+
+Started GET "/articles/1" for 172.20.0.1 at 2022-07-11 10:52:13 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (3.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (7.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 24)
+  Rendered comments/_form.html.erb (Duration: 92.3ms | Allocations: 6945)
+  Rendered articles/show.html.erb within layouts/application (Duration: 286.4ms | Allocations: 17851)
+  Rendered layout layouts/application.html.erb (Duration: 306.5ms | Allocations: 20049)
+Completed 200 OK in 338ms (Views: 292.5ms | ActiveRecord: 22.1ms | Allocations: 21942)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 10:52:19 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 28.9ms | Allocations: 1231)
+  Rendered layout layouts/application.html.erb (Duration: 59.5ms | Allocations: 3591)
+Completed 200 OK in 71ms (Views: 60.1ms | ActiveRecord: 5.3ms | Allocations: 3931)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 10:52:22 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 21.6ms | Allocations: 1291)
+  Rendered articles/new.html.erb within layouts/application (Duration: 24.7ms | Allocations: 1364)
+  Rendered layout layouts/application.html.erb (Duration: 60.2ms | Allocations: 3569)
+Completed 200 OK in 73ms (Views: 67.5ms | ActiveRecord: 0.0ms | Allocations: 3923)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 10:52:28 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"7777777777", "body"=>"66666666666666666", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.0ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('7777777777', '66666666666666666', '2022-07-11 10:52:28.051195', '2022-07-11 10:52:28.051195', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/2
+Completed 302 Found in 57ms (ActiveRecord: 17.8ms | Allocations: 2268)
+
+
+Started GET "/articles/2" for 172.20.0.1 at 2022-07-11 10:52:28 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (1.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (1.7ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 21.7ms | Allocations: 1390)
+  Rendered articles/show.html.erb within layouts/application (Duration: 42.1ms | Allocations: 2311)
+  Rendered layout layouts/application.html.erb (Duration: 69.8ms | Allocations: 4508)
+Completed 200 OK in 84ms (Views: 71.9ms | ActiveRecord: 3.2ms | Allocations: 5307)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 10:52:31 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (4.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 37.9ms | Allocations: 1268)
+  Rendered layout layouts/application.html.erb (Duration: 75.9ms | Allocations: 3657)
+Completed 200 OK in 139ms (Views: 74.0ms | ActiveRecord: 7.5ms | Allocations: 3990)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 10:52:39 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 15.5ms | Allocations: 1285)
+  Rendered articles/new.html.erb within layouts/application (Duration: 17.7ms | Allocations: 1358)
+  Rendered layout layouts/application.html.erb (Duration: 46.5ms | Allocations: 3567)
+Completed 200 OK in 57ms (Views: 50.5ms | ActiveRecord: 0.0ms | Allocations: 3921)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 10:52:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"888888888888888888888", "body"=>"99999999999999999", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (1.6ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('888888888888888888888', '99999999999999999', '2022-07-11 10:52:51.385483', '2022-07-11 10:52:51.385483', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 302 Found in 46ms (ActiveRecord: 12.7ms | Allocations: 2260)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 10:52:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (1.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (1.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.2ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 18.2ms | Allocations: 1396)
+  Rendered articles/show.html.erb within layouts/application (Duration: 33.6ms | Allocations: 2317)
+  Rendered layout layouts/application.html.erb (Duration: 60.7ms | Allocations: 4518)
+Completed 200 OK in 76ms (Views: 62.7ms | ActiveRecord: 3.3ms | Allocations: 5320)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 10:52:54 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 33.6ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 75.1ms | Allocations: 3679)
+Completed 200 OK in 86ms (Views: 74.4ms | ActiveRecord: 7.0ms | Allocations: 4010)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 11:37:04 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (8.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 46.2ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 98.1ms | Allocations: 3608)
+Completed 200 OK in 113ms (Views: 93.5ms | ActiveRecord: 12.4ms | Allocations: 3940)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 11:37:11 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 34.8ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 86.2ms | Allocations: 3685)
+Completed 200 OK in 97ms (Views: 89.5ms | ActiveRecord: 4.0ms | Allocations: 4016)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 11:57:40 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (6.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (4.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 152.0ms | Allocations: 7804)
+  Rendered layout layouts/application.html.erb (Duration: 663.2ms | Allocations: 42172)
+Completed 200 OK in 870ms (Views: 670.4ms | ActiveRecord: 25.6ms | Allocations: 50212)
+
+
+Started GET "/articles/1" for 172.20.0.1 at 2022-07-11 11:58:00 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+Started GET "/articles/1" for 172.20.0.1 at 2022-07-11 11:58:00 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mComment Load (8.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 25)
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered comments/_form.html.erb (Duration: 169.9ms | Allocations: 9524)
+  Rendered articles/show.html.erb within layouts/application (Duration: 513.2ms | Allocations: 22451)
+  [1m[36mArticle Load (9.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (18.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 12)
+  Rendered comments/_form.html.erb (Duration: 30.7ms | Allocations: 1405)
+  Rendered layout layouts/application.html.erb (Duration: 605.9ms | Allocations: 26056)
+  Rendered articles/show.html.erb within layouts/application (Duration: 94.7ms | Allocations: 3758)
+Completed 200 OK in 683ms (Views: 640.7ms | ActiveRecord: 19.7ms | Allocations: 29718)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 162.1ms | Allocations: 6838)
+Completed 200 OK in 252ms (Views: 153.6ms | ActiveRecord: 48.8ms | Allocations: 10097)
+
+
+Started DELETE "/articles/1" for 172.20.0.1 at 2022-07-11 11:58:05 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mComment Load (2.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mArticle Destroy (3.0ms)[0m  [1m[31mDELETE FROM `articles` WHERE `articles`.`id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mTRANSACTION (10.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+Redirected to http://0.0.0.0:3000/
+Completed 303 See Other in 86ms (ActiveRecord: 20.0ms | Allocations: 3364)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 11:58:06 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 43.1ms | Allocations: 1267)
+  Rendered layout layouts/application.html.erb (Duration: 86.3ms | Allocations: 3635)
+Completed 200 OK in 99ms (Views: 86.8ms | ActiveRecord: 6.4ms | Allocations: 4023)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:58:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 33.2ms | Allocations: 1382)
+  Rendered articles/show.html.erb within layouts/application (Duration: 57.9ms | Allocations: 2300)
+  Rendered layout layouts/application.html.erb (Duration: 100.0ms | Allocations: 4498)
+Completed 200 OK in 127ms (Views: 104.8ms | ActiveRecord: 5.5ms | Allocations: 5307)
+
+
+Started GET "/articles/3/edit" for 172.20.0.1 at 2022-07-11 11:58:11 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:28:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/edit.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 42.6ms | Allocations: 1863)
+  Rendered articles/edit.html.erb within layouts/application (Duration: 55.5ms | Allocations: 2116)
+  Rendered layout layouts/application.html.erb (Duration: 99.1ms | Allocations: 4316)
+Completed 200 OK in 130ms (Views: 107.6ms | ActiveRecord: 2.6ms | Allocations: 5184)
+
+
+Started PATCH "/articles/3" for 172.20.0.1 at 2022-07-11 11:58:15 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"888888888888888888888", "body"=>"99999999999999999ddd", "status"=>"public"}, "commit"=>"Update Article", "id"=>"3"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:32:in `update'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:34:in `update'
+  [1m[36mArticle Update (5.6ms)[0m  [1m[33mUPDATE `articles` SET `articles`.`body` = '99999999999999999ddd', `articles`.`updated_at` = '2022-07-11 11:58:15.871934' WHERE `articles`.`id` = 3[0m
+  ↳ app/controllers/articles_controller.rb:34:in `update'
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:34:in `update'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 302 Found in 90ms (ActiveRecord: 19.4ms | Allocations: 3922)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:58:16 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (3.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 40.9ms | Allocations: 1377)
+  Rendered articles/show.html.erb within layouts/application (Duration: 65.3ms | Allocations: 2344)
+  Rendered layout layouts/application.html.erb (Duration: 109.7ms | Allocations: 4541)
+Completed 200 OK in 136ms (Views: 113.4ms | ActiveRecord: 6.3ms | Allocations: 5340)
+
+
+Started POST "/articles/3/comments" for 172.20.0.1 at 2022-07-11 11:58:20 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"dddd", "body"=>"ddd", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"3"}
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mComment Create (4.4ms)[0m  [1m[32mINSERT INTO `comments` (`commenter`, `body`, `article_id`, `created_at`, `updated_at`, `status`) VALUES ('dddd', 'ddd', 3, '2022-07-11 11:58:20.978377', '2022-07-11 11:58:20.978377', 'public')[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 302 Found in 109ms (ActiveRecord: 19.3ms | Allocations: 3299)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:58:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 19.6ms | Allocations: 495)
+  Rendered comments/_form.html.erb (Duration: 29.1ms | Allocations: 1379)
+  Rendered articles/show.html.erb within layouts/application (Duration: 76.6ms | Allocations: 2952)
+  Rendered layout layouts/application.html.erb (Duration: 122.6ms | Allocations: 5149)
+Completed 200 OK in 155ms (Views: 131.5ms | ActiveRecord: 4.6ms | Allocations: 5948)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 11:58:28 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms | Allocations: 315)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 11:58:41 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms | Allocations: 308)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 11:58:53 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms | Allocations: 308)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:58:57 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 6.4ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 35.3ms | Allocations: 1383)
+  Rendered articles/show.html.erb within layouts/application (Duration: 76.1ms | Allocations: 2520)
+  Rendered layout layouts/application.html.erb (Duration: 120.5ms | Allocations: 4733)
+Completed 200 OK in 155ms (Views: 130.6ms | ActiveRecord: 6.6ms | Allocations: 5527)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:59:11 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (3.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 5.1ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 32.2ms | Allocations: 1386)
+  Rendered articles/show.html.erb within layouts/application (Duration: 65.5ms | Allocations: 2523)
+  Rendered layout layouts/application.html.erb (Duration: 107.1ms | Allocations: 4727)
+Completed 200 OK in 136ms (Views: 111.1ms | ActiveRecord: 7.2ms | Allocations: 5520)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 11:59:16 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms | Allocations: 305)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 11:59:23 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.0ms | Allocations: 312)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:59:26 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 5.5ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 31.4ms | Allocations: 1375)
+  Rendered articles/show.html.erb within layouts/application (Duration: 68.0ms | Allocations: 2512)
+  Rendered layout layouts/application.html.erb (Duration: 107.6ms | Allocations: 4713)
+Completed 200 OK in 133ms (Views: 113.1ms | ActiveRecord: 5.3ms | Allocations: 5506)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:59:28 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 7.2ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 35.9ms | Allocations: 1381)
+  Rendered articles/show.html.erb within layouts/application (Duration: 77.6ms | Allocations: 2518)
+  Rendered layout layouts/application.html.erb (Duration: 111.1ms | Allocations: 4715)
+Completed 200 OK in 134ms (Views: 112.5ms | ActiveRecord: 6.4ms | Allocations: 5508)
+
+
+Started GET "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 11:59:36 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for CommentsController):
+  
+actionpack (7.0.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (7.0.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:114:in `block in tagged'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:38:in `tagged'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:114:in `tagged'
+railties (7.0.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 11:59:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (7.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (4.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 7.1ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 58.6ms | Allocations: 1382)
+  Rendered articles/show.html.erb within layouts/application (Duration: 101.8ms | Allocations: 2520)
+  Rendered layout layouts/application.html.erb (Duration: 148.6ms | Allocations: 4717)
+Completed 200 OK in 185ms (Views: 151.0ms | ActiveRecord: 11.5ms | Allocations: 5509)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 12:00:11 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms | Allocations: 297)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 12:00:18 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007fecf8fe9d30 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms | Allocations: 306)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:01:50 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 12:01:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mArticle Count (11.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (5.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 87.5ms | Allocations: 5045)
+  [1m[36mComment Load (3.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 31.2ms | Allocations: 1603)
+  Rendered comments/_form.html.erb (Duration: 180.5ms | Allocations: 10769)
+  Rendered articles/show.html.erb within layouts/application (Duration: 618.1ms | Allocations: 36636)
+  Rendered layout layouts/application.html.erb (Duration: 1126.5ms | Allocations: 79896)
+Completed 200 OK in 1445ms (Views: 1269.0ms | ActiveRecord: 23.6ms | Allocations: 95060)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 1153.1ms | Allocations: 81081)
+Completed 200 OK in 1475ms (Views: 1141.6ms | ActiveRecord: 54.6ms | Allocations: 96384)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:01:55 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (3.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 4.9ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 34.7ms | Allocations: 1378)
+  Rendered articles/show.html.erb within layouts/application (Duration: 69.2ms | Allocations: 2517)
+  Rendered layout layouts/application.html.erb (Duration: 109.6ms | Allocations: 4715)
+Completed 200 OK in 137ms (Views: 113.4ms | ActiveRecord: 6.7ms | Allocations: 5527)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 12:01:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+Filter chain halted as #<Proc:0x00007f9674bdd168 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms | Allocations: 408)
+
+
+Started DELETE "/articles/3/comments/1" for 172.20.0.1 at 2022-07-11 12:02:05 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"1"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:13:in `destroy'
+  [1m[36mComment Load (4.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3 AND `comments`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:14:in `destroy'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mComment Destroy (6.5ms)[0m  [1m[31mDELETE FROM `comments` WHERE `comments`.`id` = 1[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (10.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 303 See Other in 103ms (ActiveRecord: 26.7ms | Allocations: 3303)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:02:05 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 1.4ms | Allocations: 19)
+  Rendered comments/_form.html.erb (Duration: 34.8ms | Allocations: 1384)
+  Rendered articles/show.html.erb within layouts/application (Duration: 72.5ms | Allocations: 2363)
+  Rendered layout layouts/application.html.erb (Duration: 121.7ms | Allocations: 4560)
+Completed 200 OK in 153ms (Views: 127.8ms | ActiveRecord: 6.2ms | Allocations: 5407)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 12:02:12 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (2.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 46.5ms | Allocations: 1267)
+  Rendered layout layouts/application.html.erb (Duration: 96.5ms | Allocations: 3632)
+Completed 200 OK in 113ms (Views: 103.0ms | ActiveRecord: 4.5ms | Allocations: 3963)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:02:15 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (3.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.8ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 28.5ms | Allocations: 1384)
+  Rendered articles/show.html.erb within layouts/application (Duration: 58.9ms | Allocations: 2302)
+  Rendered layout layouts/application.html.erb (Duration: 95.5ms | Allocations: 4500)
+Completed 200 OK in 134ms (Views: 106.0ms | ActiveRecord: 5.6ms | Allocations: 5308)
+
+
+Started POST "/articles/3/comments" for 172.20.0.1 at 2022-07-11 12:02:22 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"gfdhgdfgfg", "body"=>"gcfydfrdf", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"3"}
+  [1m[36mArticle Load (3.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mComment Create (3.6ms)[0m  [1m[32mINSERT INTO `comments` (`commenter`, `body`, `article_id`, `created_at`, `updated_at`, `status`) VALUES ('gfdhgdfgfg', 'gcfydfrdf', 3, '2022-07-11 12:02:22.940493', '2022-07-11 12:02:22.940493', 'public')[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 302 Found in 123ms (ActiveRecord: 20.7ms | Allocations: 4044)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:02:23 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.7ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 4.7ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 23.3ms | Allocations: 1382)
+  Rendered articles/show.html.erb within layouts/application (Duration: 51.0ms | Allocations: 2522)
+  Rendered layout layouts/application.html.erb (Duration: 90.5ms | Allocations: 4720)
+Completed 200 OK in 117ms (Views: 93.5ms | ActiveRecord: 5.3ms | Allocations: 5521)
+
+
+Started DELETE "/articles/3/comments/2" for 172.20.0.1 at 2022-07-11 12:02:27 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"3", "id"=>"2"}
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:13:in `destroy'
+  [1m[36mComment Load (2.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3 AND `comments`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:14:in `destroy'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mComment Destroy (3.6ms)[0m  [1m[31mDELETE FROM `comments` WHERE `comments`.`id` = 2[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 303 See Other in 82ms (ActiveRecord: 20.5ms | Allocations: 3014)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:02:27 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 31.1ms | Allocations: 1385)
+  Rendered articles/show.html.erb within layouts/application (Duration: 55.4ms | Allocations: 2305)
+  Rendered layout layouts/application.html.erb (Duration: 93.5ms | Allocations: 4520)
+Completed 200 OK in 116ms (Views: 96.5ms | ActiveRecord: 4.8ms | Allocations: 5321)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 12:02:36 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (2.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 35.6ms | Allocations: 1267)
+  Rendered layout layouts/application.html.erb (Duration: 76.9ms | Allocations: 3641)
+Completed 200 OK in 90ms (Views: 77.7ms | ActiveRecord: 6.6ms | Allocations: 3972)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:02:41 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.7ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 29.4ms | Allocations: 1371)
+  Rendered articles/show.html.erb within layouts/application (Duration: 58.1ms | Allocations: 2288)
+  Rendered layout layouts/application.html.erb (Duration: 99.6ms | Allocations: 4486)
+Completed 200 OK in 129ms (Views: 109.4ms | ActiveRecord: 5.6ms | Allocations: 5282)
+
+
+Started POST "/articles/3/comments" for 172.20.0.1 at 2022-07-11 12:02:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"ghjgjghj", "body"=>"bhmnbjbjj", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"3"}
+  [1m[36mArticle Load (2.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mComment Create (2.6ms)[0m  [1m[32mINSERT INTO `comments` (`commenter`, `body`, `article_id`, `created_at`, `updated_at`, `status`) VALUES ('ghjgjghj', 'bhmnbjbjj', 3, '2022-07-11 12:02:52.928236', '2022-07-11 12:02:52.928236', 'public')[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (15.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+Redirected to http://0.0.0.0:3000/articles/3
+Completed 302 Found in 90ms (ActiveRecord: 22.3ms | Allocations: 2975)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:02:53 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (1.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 3.6ms | Allocations: 183)
+  Rendered comments/_form.html.erb (Duration: 29.1ms | Allocations: 1381)
+  Rendered articles/show.html.erb within layouts/application (Duration: 55.1ms | Allocations: 2521)
+  Rendered layout layouts/application.html.erb (Duration: 91.4ms | Allocations: 4724)
+Completed 200 OK in 114ms (Views: 96.8ms | ActiveRecord: 3.8ms | Allocations: 5524)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 12:03:00 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 37.7ms | Allocations: 1266)
+  Rendered layout layouts/application.html.erb (Duration: 84.4ms | Allocations: 3639)
+Completed 200 OK in 98ms (Views: 86.1ms | ActiveRecord: 7.1ms | Allocations: 3970)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 12:03:03 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+Filter chain halted as #<Proc:0x00007f9684c27410 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms | Allocations: 102)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 12:03:03 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 47.0ms | Allocations: 1779)
+  Rendered articles/new.html.erb within layouts/application (Duration: 59.7ms | Allocations: 2045)
+  Rendered layout layouts/application.html.erb (Duration: 92.1ms | Allocations: 4250)
+Completed 200 OK in 107ms (Views: 99.8ms | ActiveRecord: 0.0ms | Allocations: 4667)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 12:03:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"hello", "body"=>"прривет как жи вапавыпвд", "status"=>"public"}, "commit"=>"Create Article"}
+Filter chain halted as #<Proc:0x00007f9684c27410 /bundle/ruby/3.0.0/gems/actionpack-7.0.3/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms | Allocations: 330)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 12:03:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"hello", "body"=>"прривет как жи вапавыпвд", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.3ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('hello', 'прривет как жи вапавыпвд', '2022-07-11 12:03:21.638034', '2022-07-11 12:03:21.638034', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (10.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/4
+Completed 302 Found in 65ms (ActiveRecord: 15.1ms | Allocations: 2511)
+
+
+Started GET "/articles/4" for 172.20.0.1 at 2022-07-11 12:03:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"4"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (4.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 4[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 36.0ms | Allocations: 1374)
+  Rendered articles/show.html.erb within layouts/application (Duration: 69.7ms | Allocations: 2295)
+  Rendered layout layouts/application.html.erb (Duration: 114.8ms | Allocations: 4492)
+Completed 200 OK in 143ms (Views: 117.2ms | ActiveRecord: 7.5ms | Allocations: 5292)
+
+
+Started GET "/articles/4/edit" for 172.20.0.1 at 2022-07-11 12:03:33 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:28:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/edit.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 31.4ms | Allocations: 1392)
+  Rendered articles/edit.html.erb within layouts/application (Duration: 38.5ms | Allocations: 1589)
+  Rendered layout layouts/application.html.erb (Duration: 73.6ms | Allocations: 3786)
+Completed 200 OK in 99ms (Views: 80.0ms | ActiveRecord: 2.6ms | Allocations: 4654)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 12:03:41 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (6.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 42.8ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 85.4ms | Allocations: 3687)
+Completed 200 OK in 96ms (Views: 82.7ms | ActiveRecord: 9.1ms | Allocations: 4018)
+
+
+Started GET "/articles/4" for 172.20.0.1 at 2022-07-11 12:03:44 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mArticle Load (3.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 4[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 27.4ms | Allocations: 1387)
+  Rendered articles/show.html.erb within layouts/application (Duration: 51.1ms | Allocations: 2305)
+  Rendered layout layouts/application.html.erb (Duration: 90.0ms | Allocations: 4502)
+Completed 200 OK in 113ms (Views: 92.6ms | ActiveRecord: 6.1ms | Allocations: 5299)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 12:40:29 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (6.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 134.9ms | Allocations: 7804)
+  Rendered layout layouts/application.html.erb (Duration: 619.7ms | Allocations: 42300)
+Completed 200 OK in 794ms (Views: 620.2ms | ActiveRecord: 25.1ms | Allocations: 50341)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 12:40:38 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 38.6ms | Allocations: 1317)
+  Rendered layout layouts/application.html.erb (Duration: 80.6ms | Allocations: 3688)
+Completed 200 OK in 92ms (Views: 81.2ms | ActiveRecord: 5.7ms | Allocations: 4020)
+
+
+Started GET "/users/anfisa-nikolaevna-dobronravova" for 172.20.0.1 at 2022-07-11 12:42:43 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/users/anfisa-nikolaevna-dobronravova"):
+  
+Started GET "/" for 172.20.0.1 at 2022-07-11 12:50:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (28.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 1534.3ms | Allocations: 1444)
+  Rendered layout layouts/application.html.erb (Duration: 1641.6ms | Allocations: 3828)
+Completed 200 OK in 1663ms (Views: 1649.6ms | ActiveRecord: 58.5ms | Allocations: 4166)
+
+
+Started GET "/articles/2" for 172.20.0.1 at 2022-07-11 12:50:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (4.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.9ms | Allocations: 21)
+  Rendered comments/_form.html.erb (Duration: 149.0ms | Allocations: 8587)
+  Rendered articles/show.html.erb within layouts/application (Duration: 436.8ms | Allocations: 20404)
+  Rendered layout layouts/application.html.erb (Duration: 460.0ms | Allocations: 22601)
+Completed 200 OK in 492ms (Views: 443.0ms | ActiveRecord: 23.8ms | Allocations: 24417)
+
+
+Started GET "/articles/3" for 172.20.0.1 at 2022-07-11 12:51:07 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 13.8ms | Allocations: 495)
+  Rendered comments/_form.html.erb (Duration: 28.1ms | Allocations: 1384)
+  Rendered articles/show.html.erb within layouts/application (Duration: 74.1ms | Allocations: 2954)
+  Rendered layout layouts/application.html.erb (Duration: 214.9ms | Allocations: 5152)
+Completed 200 OK in 239ms (Views: 218.4ms | ActiveRecord: 4.5ms | Allocations: 5964)
+
+
+Started GET "/articles/4" for 172.20.0.1 at 2022-07-11 12:51:09 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mArticle Load (2.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 4 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 4[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 26.5ms | Allocations: 1384)
+  Rendered articles/show.html.erb within layouts/application (Duration: 57.7ms | Allocations: 2303)
+  Rendered layout layouts/application.html.erb (Duration: 93.6ms | Allocations: 4515)
+Completed 200 OK in 125ms (Views: 97.8ms | ActiveRecord: 6.8ms | Allocations: 5311)
+
+
+Started GET "/articles/2" for 172.20.0.1 at 2022-07-11 12:51:17 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (6.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 27.3ms | Allocations: 1370)
+  Rendered articles/show.html.erb within layouts/application (Duration: 62.5ms | Allocations: 2288)
+  Rendered layout layouts/application.html.erb (Duration: 106.2ms | Allocations: 4495)
+Completed 200 OK in 135ms (Views: 112.5ms | ActiveRecord: 8.8ms | Allocations: 5304)
+
+
+Started GET "/articles/2" for 172.20.0.1 at 2022-07-11 13:38:26 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (3.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 25)
+  Rendered comments/_form.html.erb (Duration: 237.3ms | Allocations: 8950)
+  Rendered articles/show.html.erb within layouts/application (Duration: 388.4ms | Allocations: 17749)
+  Rendered layout layouts/application.html.erb (Duration: 1024.7ms | Allocations: 51763)
+Completed 200 OK in 1399ms (Views: 1042.1ms | ActiveRecord: 36.8ms | Allocations: 66671)
+
+
+Started GET "/article/" for 172.20.0.1 at 2022-07-11 13:43:04 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+Completed 404 Not Found in 13ms (ActiveRecord: 0.0ms | Allocations: 539)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article without an ID):
+  
+app/controllers/articles_controller.rb:10:in `show'
+Started GET "/article/5" for 172.20.0.1 at 2022-07-11 13:43:18 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/article/5"):
+  
+Started GET "/article/2" for 172.20.0.1 at 2022-07-11 13:43:24 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/article/2"):
+  
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (188.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ecs_application_db`[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+  [1m[35m (71.5ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255)) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `comments` CASCADE[0m
+  [1m[35m (83.4ms)[0m  [1m[35mCREATE TABLE `comments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `commenter` varchar(255), `body` text, `article_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255), INDEX `index_comments_on_article_id` (`article_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (184.9ms)[0m  [1m[35mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+  [1m[35m (66.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (13.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20220708181440)[0m
+  [1m[35m (10.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20220705073648),
+(20220708180339),
+(20220708181425);
+
+[0m
+  [1m[35m (63.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-07-11 15:50:54.847927', '2022-07-11 15:50:54.847927')[0m
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '21ade446c4a953e350b6bffd9411ce0540d2b627', '2022-07-11 15:50:54.915005', '2022-07-11 15:50:54.915005')[0m
+  [1m[36mTRANSACTION (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (20.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+Started GET "/" for 172.20.0.1 at 2022-07-11 15:55:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 0.0ms | Allocations: 6985)
+
+
+  
+NameError (undefined method `relation' for class `#<Class:#<Object:0x000055f028a284b0>>'
+Did you mean?  Rational):
+  
+app/models/article.rb:10:in `extend'
+app/models/article.rb:10:in `<main>'
+app/controllers/articles_controller.rb:6:in `index'
+Started GET "/" for 172.20.0.1 at 2022-07-11 15:55:33 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 0.0ms | Allocations: 5481)
+
+
+  
+NameError (undefined method `relation' for class `#<Class:#<Object:0x000055f028a284b0>>'
+Did you mean?  Rational):
+  
+app/models/article.rb:10:in `extend'
+app/models/article.rb:10:in `<main>'
+app/controllers/articles_controller.rb:6:in `index'
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (136.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ecs_application_db`[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+  [1m[35m (68.1ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255)) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `comments` CASCADE[0m
+  [1m[35m (70.1ms)[0m  [1m[35mCREATE TABLE `comments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `commenter` varchar(255), `body` text, `article_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255), INDEX `index_comments_on_article_id` (`article_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (165.2ms)[0m  [1m[35mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+  [1m[35m (68.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (9.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20220708181440)[0m
+  [1m[35m (9.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20220705073648),
+(20220708180339),
+(20220708181425);
+
+[0m
+  [1m[35m (67.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-07-11 15:58:18.686993', '2022-07-11 15:58:18.686993')[0m
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '21ade446c4a953e350b6bffd9411ce0540d2b627', '2022-07-11 15:58:18.757015', '2022-07-11 15:58:18.757015')[0m
+  [1m[36mTRANSACTION (16.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (18.6ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+Started GET "/" for 172.20.0.1 at 2022-07-11 15:59:33 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (5.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 123.8ms | Allocations: 3582)
+  Rendered layout layouts/application.html.erb (Duration: 559.2ms | Allocations: 37753)
+Completed 200 OK in 690ms (Views: 551.1ms | ActiveRecord: 29.8ms | Allocations: 46241)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 15:59:40 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 65.3ms | Allocations: 4078)
+  Rendered articles/new.html.erb within layouts/application (Duration: 73.1ms | Allocations: 4354)
+  Rendered layout layouts/application.html.erb (Duration: 98.3ms | Allocations: 6560)
+Completed 200 OK in 188ms (Views: 104.5ms | ActiveRecord: 7.1ms | Allocations: 11008)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 15:59:49 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"fgdfgdfhd", "body"=>"gjfgjgjjggj", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.5ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('fgdfgdfhd', 'gjfgjgjjggj', '2022-07-11 15:59:49.124825', '2022-07-11 15:59:49.124825', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (9.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/fgdfgdfhd
+Completed 302 Found in 72ms (ActiveRecord: 14.4ms | Allocations: 3611)
+
+
+Started GET "/articles/fgdfgdfhd" for 172.20.0.1 at 2022-07-11 15:59:49 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (3.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'fgdfgdfhd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 24)
+  Rendered comments/_form.html.erb (Duration: 96.7ms | Allocations: 6483)
+  Rendered articles/show.html.erb within layouts/application (Duration: 195.1ms | Allocations: 14999)
+  Rendered layout layouts/application.html.erb (Duration: 221.6ms | Allocations: 17197)
+Completed 200 OK in 251ms (Views: 215.0ms | ActiveRecord: 15.0ms | Allocations: 18995)
+
+
+Started POST "/articles/fgdfgdfhd/comments" for 172.20.0.1 at 2022-07-11 15:59:59 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"dhdhhdh", "body"=>"ffgggggggg", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Completed 404 Not Found in 19ms (ActiveRecord: 2.0ms | Allocations: 1695)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=fgdfgdfhd):
+  
+app/controllers/comments_controller.rb:7:in `create'
+Started GET "/articles/fgdfgdfhd" for 172.20.0.1 at 2022-07-11 16:00:01 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'fgdfgdfhd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (4.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 23.4ms | Allocations: 1395)
+  Rendered articles/show.html.erb within layouts/application (Duration: 53.5ms | Allocations: 2316)
+  Rendered layout layouts/application.html.erb (Duration: 79.7ms | Allocations: 4529)
+Completed 200 OK in 111ms (Views: 81.0ms | ActiveRecord: 6.7ms | Allocations: 5529)
+
+
+Started POST "/articles/fgdfgdfhd/comments" for 172.20.0.1 at 2022-07-11 16:00:11 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"ddddddddddddddddddd", "body"=>"ffffffffffffffffffffff", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (1.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Completed 404 Not Found in 16ms (ActiveRecord: 1.4ms | Allocations: 1119)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=fgdfgdfhd):
+  
+app/controllers/comments_controller.rb:7:in `create'
+Started GET "/articles/fgdfgdfhd" for 172.20.0.1 at 2022-07-11 16:00:13 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'fgdfgdfhd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 32.1ms | Allocations: 1379)
+  Rendered articles/show.html.erb within layouts/application (Duration: 57.9ms | Allocations: 2300)
+  Rendered layout layouts/application.html.erb (Duration: 124.7ms | Allocations: 4513)
+Completed 200 OK in 158ms (Views: 129.9ms | ActiveRecord: 6.4ms | Allocations: 5510)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:00:26 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 41.5ms | Allocations: 1225)
+  Rendered layout layouts/application.html.erb (Duration: 83.3ms | Allocations: 3584)
+Completed 200 OK in 101ms (Views: 87.7ms | ActiveRecord: 4.8ms | Allocations: 3916)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 16:00:30 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 30.2ms | Allocations: 1285)
+  Rendered articles/new.html.erb within layouts/application (Duration: 32.3ms | Allocations: 1358)
+  Rendered layout layouts/application.html.erb (Duration: 67.1ms | Allocations: 3563)
+Completed 200 OK in 81ms (Views: 76.6ms | ActiveRecord: 0.0ms | Allocations: 3917)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 16:00:34 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"xfbxbcxbcdfn", "body"=>"cnbbbbbbbbbbbbbb", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.8ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('xfbxbcxbcdfn', 'cnbbbbbbbbbbbbbb', '2022-07-11 16:00:34.807458', '2022-07-11 16:00:34.807458', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (17.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/xfbxbcxbcdfn
+Completed 302 Found in 70ms (ActiveRecord: 21.6ms | Allocations: 2269)
+
+
+Started GET "/articles/xfbxbcxbcdfn" for 172.20.0.1 at 2022-07-11 16:00:34 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"xfbxbcxbcdfn"}
+  [1m[36mArticle Load (3.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'xfbxbcxbcdfn' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (1.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 18.6ms | Allocations: 1380)
+  Rendered articles/show.html.erb within layouts/application (Duration: 40.4ms | Allocations: 2303)
+  Rendered layout layouts/application.html.erb (Duration: 64.5ms | Allocations: 4500)
+Completed 200 OK in 94ms (Views: 69.4ms | ActiveRecord: 5.8ms | Allocations: 5504)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 16:00:40 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (2.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 31.3ms | Allocations: 1268)
+  Rendered layout layouts/application.html.erb (Duration: 62.4ms | Allocations: 3639)
+Completed 200 OK in 73ms (Views: 63.6ms | ActiveRecord: 4.7ms | Allocations: 3970)
+
+
+Started GET "/articles/fgdfgdfhd" for 172.20.0.1 at 2022-07-11 16:00:44 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'fgdfgdfhd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.7ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 21.6ms | Allocations: 1382)
+  Rendered articles/show.html.erb within layouts/application (Duration: 47.9ms | Allocations: 2302)
+  Rendered layout layouts/application.html.erb (Duration: 73.8ms | Allocations: 4515)
+Completed 200 OK in 100ms (Views: 76.0ms | ActiveRecord: 5.9ms | Allocations: 5516)
+
+
+Started POST "/articles/fgdfgdfhd/comments" for 172.20.0.1 at 2022-07-11 16:10:19 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"ddddddddddddd", "body"=>"ffffffffffffffff\n", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (2.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Completed 404 Not Found in 18ms (ActiveRecord: 2.8ms | Allocations: 1125)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=fgdfgdfhd):
+  
+app/controllers/comments_controller.rb:7:in `create'
+Started GET "/articles/fgdfgdfhd" for 172.20.0.1 at 2022-07-11 16:10:20 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (3.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'fgdfgdfhd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (6.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 48.3ms | Allocations: 1397)
+  Rendered articles/show.html.erb within layouts/application (Duration: 94.0ms | Allocations: 2318)
+  Rendered layout layouts/application.html.erb (Duration: 153.5ms | Allocations: 4531)
+Completed 200 OK in 198ms (Views: 158.6ms | ActiveRecord: 9.7ms | Allocations: 5529)
+
+
+Started DELETE "/articles/fgdfgdfhd" for 172.20.0.1 at 2022-07-11 16:10:26 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"fgdfgdfhd"}
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'fgdfgdfhd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mComment Load (1.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mArticle Destroy (4.0ms)[0m  [1m[31mDELETE FROM `articles` WHERE `articles`.`id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mTRANSACTION (11.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+Redirected to http://0.0.0.0:3000/
+Completed 303 See Other in 78ms (ActiveRecord: 20.2ms | Allocations: 3397)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:10:26 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 23.5ms | Allocations: 1218)
+  Rendered layout layouts/application.html.erb (Duration: 47.1ms | Allocations: 3593)
+Completed 200 OK in 56ms (Views: 48.2ms | ActiveRecord: 3.1ms | Allocations: 3931)
+
+
+Started GET "/articles/xfbxbcxbcdfn" for 172.20.0.1 at 2022-07-11 16:10:57 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"xfbxbcxbcdfn"}
+  [1m[36mArticle Load (5.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'xfbxbcxbcdfn' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 20.9ms | Allocations: 1376)
+  Rendered articles/show.html.erb within layouts/application (Duration: 50.1ms | Allocations: 2296)
+  Rendered layout layouts/application.html.erb (Duration: 82.4ms | Allocations: 4493)
+Completed 200 OK in 119ms (Views: 87.3ms | ActiveRecord: 8.6ms | Allocations: 5495)
+
+
+Started POST "/articles/xfbxbcxbcdfn/comments" for 172.20.0.1 at 2022-07-11 16:11:03 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"fdddddddddddd", "body"=>"ggggggggggggggggg", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"xfbxbcxbcdfn"}
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Completed 404 Not Found in 17ms (ActiveRecord: 2.0ms | Allocations: 1103)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=xfbxbcxbcdfn):
+  
+app/controllers/comments_controller.rb:7:in `create'
+Started GET "/articles/xfbxbcxbcdfn" for 172.20.0.1 at 2022-07-11 16:11:05 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"xfbxbcxbcdfn"}
+  [1m[36mArticle Load (2.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'xfbxbcxbcdfn' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 32.1ms | Allocations: 1372)
+  Rendered articles/show.html.erb within layouts/application (Duration: 59.7ms | Allocations: 2293)
+  Rendered layout layouts/application.html.erb (Duration: 99.5ms | Allocations: 4506)
+Completed 200 OK in 129ms (Views: 105.0ms | ActiveRecord: 4.4ms | Allocations: 5503)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (153.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ecs_application_db`[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+  [1m[35m (66.5ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255)) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `comments` CASCADE[0m
+  [1m[35m (71.9ms)[0m  [1m[35mCREATE TABLE `comments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `commenter` varchar(255), `body` text, `article_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255), INDEX `index_comments_on_article_id` (`article_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (172.4ms)[0m  [1m[35mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+  [1m[35m (67.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (10.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20220708181440)[0m
+  [1m[35m (10.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20220705073648),
+(20220708180339),
+(20220708181425);
+
+[0m
+  [1m[35m (58.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-07-11 16:16:30.578451', '2022-07-11 16:16:30.578451')[0m
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '21ade446c4a953e350b6bffd9411ce0540d2b627', '2022-07-11 16:16:30.650215', '2022-07-11 16:16:30.650215')[0m
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (22.0ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:17:54 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 134.8ms | Allocations: 3585)
+  Rendered layout layouts/application.html.erb (Duration: 586.3ms | Allocations: 37954)
+Completed 200 OK in 707ms (Views: 581.9ms | ActiveRecord: 28.6ms | Allocations: 46318)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 16:17:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 83.9ms | Allocations: 4083)
+  Rendered articles/new.html.erb within layouts/application (Duration: 91.1ms | Allocations: 4359)
+  Rendered layout layouts/application.html.erb (Duration: 128.0ms | Allocations: 6565)
+Completed 200 OK in 200ms (Views: 138.4ms | ActiveRecord: 4.2ms | Allocations: 11013)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 16:18:06 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"ggggggggggg", "body"=>"ggggggggggggggggg", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.6ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('ggggggggggg', 'ggggggggggggggggg', '2022-07-11 16:18:06.336190', '2022-07-11 16:18:06.336190', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (9.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/ggggggggggg
+Completed 302 Found in 67ms (ActiveRecord: 14.9ms | Allocations: 3611)
+
+
+Started GET "/articles/ggggggggggg" for 172.20.0.1 at 2022-07-11 16:18:06 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"ggggggggggg"}
+  [1m[36mArticle Load (3.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggggggg' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 24)
+  Rendered comments/_form.html.erb (Duration: 65.1ms | Allocations: 6114)
+  Rendered articles/show.html.erb within layouts/application (Duration: 168.5ms | Allocations: 14653)
+  Rendered layout layouts/application.html.erb (Duration: 188.7ms | Allocations: 16851)
+Completed 200 OK in 220ms (Views: 185.4ms | ActiveRecord: 11.2ms | Allocations: 18649)
+
+
+Started POST "/articles/ggggggggggg/comments" for 172.20.0.1 at 2022-07-11 16:18:18 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"hhhhhhhhhhhh", "body"=>"fffffffffffffffff"}, "commit"=>"Create Comment", "article_id"=>"ggggggggggg"}
+  [1m[36mArticle Load (1.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Completed 404 Not Found in 19ms (ActiveRecord: 1.6ms | Allocations: 1671)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=ggggggggggg):
+  
+app/controllers/comments_controller.rb:7:in `create'
+Started GET "/articles/ggggggggggg" for 172.20.0.1 at 2022-07-11 16:18:20 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggggggg"}
+  [1m[36mArticle Load (2.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggggggg' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (5.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 32.2ms | Allocations: 1067)
+  Rendered articles/show.html.erb within layouts/application (Duration: 63.3ms | Allocations: 1991)
+  Rendered layout layouts/application.html.erb (Duration: 106.1ms | Allocations: 4204)
+Completed 200 OK in 143ms (Views: 107.6ms | ActiveRecord: 8.1ms | Allocations: 5204)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (152.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ecs_application_db`[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+  [1m[35m (64.7ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255)) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `comments` CASCADE[0m
+  [1m[35m (70.8ms)[0m  [1m[35mCREATE TABLE `comments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `commenter` varchar(255), `body` text, `article_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255), INDEX `index_comments_on_article_id` (`article_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (187.5ms)[0m  [1m[35mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+  [1m[35m (56.2ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (9.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20220708181440)[0m
+  [1m[35m (9.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20220705073648),
+(20220708180339),
+(20220708181425);
+
+[0m
+  [1m[35m (69.0ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-07-11 16:26:46.252899', '2022-07-11 16:26:46.252899')[0m
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '21ade446c4a953e350b6bffd9411ce0540d2b627', '2022-07-11 16:26:46.329354', '2022-07-11 16:26:46.329354')[0m
+  [1m[36mTRANSACTION (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (20.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:28:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (5.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 82.8ms | Allocations: 3583)
+  Rendered layout layouts/application.html.erb (Duration: 552.1ms | Allocations: 38061)
+Completed 200 OK in 750ms (Views: 598.9ms | ActiveRecord: 27.6ms | Allocations: 46425)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 16:28:14 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 101.5ms | Allocations: 4075)
+  Rendered articles/new.html.erb within layouts/application (Duration: 111.4ms | Allocations: 4351)
+  Rendered layout layouts/application.html.erb (Duration: 144.8ms | Allocations: 6557)
+Completed 200 OK in 242ms (Views: 150.9ms | ActiveRecord: 9.4ms | Allocations: 11005)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 16:28:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"qqqqqqqqqqqq", "body"=>"wwwwwwwwwwwwww", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.1ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('qqqqqqqqqqqq', 'wwwwwwwwwwwwww', '2022-07-11 16:28:21.845118', '2022-07-11 16:28:21.845118', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/qqqqqqqqqqqq
+Completed 302 Found in 67ms (ActiveRecord: 14.8ms | Allocations: 3613)
+
+
+Started GET "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:28:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (4.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (5.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 24)
+  Rendered comments/_form.html.erb (Duration: 88.5ms | Allocations: 6110)
+  Rendered articles/show.html.erb within layouts/application (Duration: 224.5ms | Allocations: 14626)
+  Rendered layout layouts/application.html.erb (Duration: 243.8ms | Allocations: 16824)
+Completed 200 OK in 276ms (Views: 233.1ms | ActiveRecord: 19.9ms | Allocations: 18622)
+
+
+Started POST "/articles/qqqqqqqqqqqq/comments" for 172.20.0.1 at 2022-07-11 16:28:34 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"gggggggggggg", "body"=>"hhhhhhhhhhhhh"}, "commit"=>"Create Comment", "article_id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://0.0.0.0:3000/articles/qqqqqqqqqqqq
+Completed 302 Found in 39ms (ActiveRecord: 1.9ms | Allocations: 2379)
+
+
+Started GET "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:28:34 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (1.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 19.8ms | Allocations: 1074)
+  Rendered articles/show.html.erb within layouts/application (Duration: 42.0ms | Allocations: 1997)
+  Rendered layout layouts/application.html.erb (Duration: 79.2ms | Allocations: 4195)
+Completed 200 OK in 102ms (Views: 82.0ms | ActiveRecord: 3.9ms | Allocations: 5202)
+
+
+Started POST "/articles/qqqqqqqqqqqq/comments" for 172.20.0.1 at 2022-07-11 16:28:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"jjjjjjjjjjjjjjjjjjjjjjjjjj", "body"=>"llllllllllllllllllll"}, "commit"=>"Create Comment", "article_id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (1.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://0.0.0.0:3000/articles/qqqqqqqqqqqq
+Completed 302 Found in 26ms (ActiveRecord: 1.5ms | Allocations: 2167)
+
+
+Started GET "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:28:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 19.2ms | Allocations: 1082)
+  Rendered articles/show.html.erb within layouts/application (Duration: 41.5ms | Allocations: 2005)
+  Rendered layout layouts/application.html.erb (Duration: 69.6ms | Allocations: 4203)
+Completed 200 OK in 102ms (Views: 72.7ms | ActiveRecord: 6.0ms | Allocations: 5210)
+
+
+Started GET "/articles/qq" for 172.20.0.1 at 2022-07-11 16:29:07 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"qq"}
+  [1m[36mArticle Load (6.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+Completed 404 Not Found in 35ms (ActiveRecord: 6.7ms | Allocations: 1743)
+
+
+  
+ActiveRecord::RecordNotFound (can't find record with friendly id: "qq"):
+  
+app/controllers/articles_controller.rb:10:in `show'
+Started GET "/articles" for 172.20.0.1 at 2022-07-11 16:29:12 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (6.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 43.0ms | Allocations: 1225)
+  Rendered layout layouts/application.html.erb (Duration: 94.2ms | Allocations: 3624)
+Completed 200 OK in 108ms (Views: 92.9ms | ActiveRecord: 9.3ms | Allocations: 3956)
+
+
+Started GET "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:29:15 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 1.2ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 22.1ms | Allocations: 1080)
+  Rendered articles/show.html.erb within layouts/application (Duration: 49.7ms | Allocations: 2000)
+  Rendered layout layouts/application.html.erb (Duration: 93.7ms | Allocations: 4197)
+Completed 200 OK in 118ms (Views: 95.5ms | ActiveRecord: 4.8ms | Allocations: 5197)
+
+
+Started POST "/articles/qqqqqqqqqqqq/comments" for 172.20.0.1 at 2022-07-11 16:29:23 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"55555555555555555555555", "body"=>"nnnnnnnnnnnnnnnnnnnnnnnn"}, "commit"=>"Create Comment", "article_id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (1.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://0.0.0.0:3000/articles/qqqqqqqqqqqq
+Completed 302 Found in 29ms (ActiveRecord: 1.4ms | Allocations: 2142)
+
+
+Started GET "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:29:23 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 20.3ms | Allocations: 1084)
+  Rendered articles/show.html.erb within layouts/application (Duration: 41.4ms | Allocations: 2007)
+  Rendered layout layouts/application.html.erb (Duration: 74.4ms | Allocations: 4204)
+Completed 200 OK in 99ms (Views: 77.3ms | ActiveRecord: 4.8ms | Allocations: 5209)
+
+
+Started POST "/articles/qqqqqqqqqqqq/comments" for 172.20.0.1 at 2022-07-11 16:29:31 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"shiro", "body"=>"666666666666666666666666"}, "commit"=>"Create Comment", "article_id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://0.0.0.0:3000/articles/qqqqqqqqqqqq
+Completed 302 Found in 34ms (ActiveRecord: 1.7ms | Allocations: 2144)
+
+
+Started GET "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:29:31 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (3.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 27.4ms | Allocations: 1078)
+  Rendered articles/show.html.erb within layouts/application (Duration: 52.8ms | Allocations: 2001)
+  Rendered layout layouts/application.html.erb (Duration: 96.9ms | Allocations: 4198)
+Completed 200 OK in 129ms (Views: 104.0ms | ActiveRecord: 6.0ms | Allocations: 5203)
+
+
+Started DELETE "/articles/qqqqqqqqqqqq" for 172.20.0.1 at 2022-07-11 16:29:44 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"qqqqqqqqqqqq"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'qqqqqqqqqqqq' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mComment Load (4.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mArticle Destroy (6.0ms)[0m  [1m[31mDELETE FROM `articles` WHERE `articles`.`id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+Redirected to http://0.0.0.0:3000/
+Completed 303 See Other in 96ms (ActiveRecord: 24.1ms | Allocations: 3400)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:29:44 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 30.1ms | Allocations: 1153)
+  Rendered layout layouts/application.html.erb (Duration: 69.0ms | Allocations: 3521)
+Completed 200 OK in 77ms (Views: 68.6ms | ActiveRecord: 5.0ms | Allocations: 3858)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (3.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (206.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ecs_application_db`[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE DATABASE `ecs_application_db` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+  [1m[35m (72.3ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255)) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP TABLE IF EXISTS `comments` CASCADE[0m
+  [1m[35m (67.2ms)[0m  [1m[35mCREATE TABLE `comments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `commenter` varchar(255), `body` text, `article_id` bigint NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `status` varchar(255), INDEX `index_comments_on_article_id` (`article_id`)) DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (171.1ms)[0m  [1m[35mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+  [1m[35m (67.2ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (10.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20220708181440)[0m
+  [1m[35m (18.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20220705073648),
+(20220708180339),
+(20220708181425);
+
+[0m
+  [1m[35m (54.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.0ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-07-11 16:38:31.622877', '2022-07-11 16:38:31.622877')[0m
+  [1m[36mTRANSACTION (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '21ade446c4a953e350b6bffd9411ce0540d2b627', '2022-07-11 16:38:31.692731', '2022-07-11 16:38:31.692731')[0m
+  [1m[36mTRANSACTION (9.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (26.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `articles` CASCADE[0m
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:39:47 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (1.9ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 88.8ms | Allocations: 3582)
+  Rendered layout layouts/application.html.erb (Duration: 553.9ms | Allocations: 38034)
+Completed 200 OK in 706ms (Views: 590.1ms | ActiveRecord: 26.8ms | Allocations: 46385)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 16:39:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 82.6ms | Allocations: 4073)
+  Rendered articles/new.html.erb within layouts/application (Duration: 92.5ms | Allocations: 4349)
+  Rendered layout layouts/application.html.erb (Duration: 129.4ms | Allocations: 6555)
+Completed 200 OK in 207ms (Views: 135.6ms | ActiveRecord: 6.6ms | Allocations: 11008)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 16:39:59 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"ggggggddddddddd", "body"=>"ddddddddddddddddddddd", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (2.3ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('ggggggddddddddd', 'ddddddddddddddddddddd', '2022-07-11 16:39:59.928358', '2022-07-11 16:39:59.928358', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (9.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/ggggggddddddddd
+Completed 302 Found in 62ms (ActiveRecord: 13.1ms | Allocations: 3609)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:40:00 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (3.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 24)
+  Rendered comments/_form.html.erb (Duration: 66.9ms | Allocations: 6112)
+  Rendered articles/show.html.erb within layouts/application (Duration: 189.1ms | Allocations: 14629)
+  Rendered layout layouts/application.html.erb (Duration: 209.0ms | Allocations: 16827)
+Completed 200 OK in 250ms (Views: 206.3ms | ActiveRecord: 12.1ms | Allocations: 18630)
+
+
+Started POST "/articles/ggggggddddddddd/comments" for 172.20.0.1 at 2022-07-11 16:40:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"dfsfdsdsgdsggsd", "body"=>"sddgsssssssssssss"}, "commit"=>"Create Comment", "article_id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (1.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://0.0.0.0:3000/articles/ggggggddddddddd
+Completed 302 Found in 35ms (ActiveRecord: 1.8ms | Allocations: 2367)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:40:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (3.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.7ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 19.1ms | Allocations: 1082)
+  Rendered articles/show.html.erb within layouts/application (Duration: 48.5ms | Allocations: 2006)
+  Rendered layout layouts/application.html.erb (Duration: 87.6ms | Allocations: 4204)
+Completed 200 OK in 121ms (Views: 93.6ms | ActiveRecord: 5.9ms | Allocations: 5216)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:40:11 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 23.4ms | Allocations: 1077)
+  Rendered articles/show.html.erb within layouts/application (Duration: 51.4ms | Allocations: 1999)
+  Rendered layout layouts/application.html.erb (Duration: 92.0ms | Allocations: 4197)
+Completed 200 OK in 122ms (Views: 96.5ms | ActiveRecord: 5.2ms | Allocations: 5211)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (3.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 25)
+  Rendered comments/_form.html.erb (Duration: 139.9ms | Allocations: 8380)
+  Rendered articles/show.html.erb within layouts/application (Duration: 260.7ms | Allocations: 17212)
+  Rendered layout layouts/application.html.erb (Duration: 697.3ms | Allocations: 51195)
+Completed 200 OK in 979ms (Views: 714.9ms | ActiveRecord: 26.2ms | Allocations: 66361)
+
+
+Started GET "/articles" for 172.20.0.1 at 2022-07-11 16:46:26 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (5.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (4.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 53.7ms | Allocations: 1612)
+  Rendered layout layouts/application.html.erb (Duration: 98.3ms | Allocations: 3984)
+Completed 200 OK in 112ms (Views: 94.8ms | ActiveRecord: 10.2ms | Allocations: 4388)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:29 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 33.5ms | Allocations: 1078)
+  Rendered articles/show.html.erb within layouts/application (Duration: 65.6ms | Allocations: 2000)
+  Rendered layout layouts/application.html.erb (Duration: 135.7ms | Allocations: 4198)
+Completed 200 OK in 164ms (Views: 141.3ms | ActiveRecord: 4.5ms | Allocations: 5217)
+
+
+Started POST "/articles/ggggggddddddddd/comments" for 172.20.0.1 at 2022-07-11 16:46:38 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"hhhhhhhhhhhhhhhhhhhh", "body"=>"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"}, "commit"=>"Create Comment", "article_id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mComment Create (4.6ms)[0m  [1m[32mINSERT INTO `comments` (`commenter`, `body`, `article_id`, `created_at`, `updated_at`, `status`) VALUES ('hhhhhhhhhhhhhhhhhhhh', 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', 1, '2022-07-11 16:46:38.587858', '2022-07-11 16:46:38.587858', NULL)[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (13.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+Redirected to http://0.0.0.0:3000/articles/ggggggddddddddd
+Completed 302 Found in 103ms (ActiveRecord: 21.8ms | Allocations: 4905)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:38 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (5.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.7ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 12.4ms | Allocations: 416)
+  Rendered comments/_form.html.erb (Duration: 23.6ms | Allocations: 1063)
+  Rendered articles/show.html.erb within layouts/application (Duration: 64.4ms | Allocations: 2610)
+  Rendered layout layouts/application.html.erb (Duration: 98.2ms | Allocations: 4808)
+Completed 200 OK in 127ms (Views: 101.3ms | ActiveRecord: 8.2ms | Allocations: 5866)
+
+
+Started DELETE "/articles/ggggggddddddddd/comments/1" for 172.20.0.1 at 2022-07-11 16:46:44 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"ggggggddddddddd", "id"=>"1"}
+  [1m[36mArticle Load (3.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:13:in `destroy'
+  [1m[36mComment Load (2.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1 AND `comments`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:14:in `destroy'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mComment Destroy (12.2ms)[0m  [1m[31mDELETE FROM `comments` WHERE `comments`.`id` = 1[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (8.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+Redirected to http://0.0.0.0:3000/articles/ggggggddddddddd
+Completed 303 See Other in 134ms (ActiveRecord: 28.8ms | Allocations: 3431)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:45 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 23.7ms | Allocations: 1079)
+  Rendered articles/show.html.erb within layouts/application (Duration: 50.7ms | Allocations: 2003)
+  Rendered layout layouts/application.html.erb (Duration: 90.1ms | Allocations: 4201)
+Completed 200 OK in 119ms (Views: 94.5ms | ActiveRecord: 4.9ms | Allocations: 5211)
+
+
+Started DELETE "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:49 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (1.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+Completed 404 Not Found in 24ms (ActiveRecord: 1.4ms | Allocations: 1654)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=ggggggddddddddd):
+  
+app/controllers/articles_controller.rb:42:in `destroy'
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 27.0ms | Allocations: 1083)
+  Rendered articles/show.html.erb within layouts/application (Duration: 56.9ms | Allocations: 2005)
+  Rendered layout layouts/application.html.erb (Duration: 95.7ms | Allocations: 4218)
+Completed 200 OK in 136ms (Views: 107.1ms | ActiveRecord: 6.1ms | Allocations: 5220)
+
+
+Started DELETE "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:56 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (3.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+Completed 404 Not Found in 22ms (ActiveRecord: 3.1ms | Allocations: 1150)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=ggggggddddddddd):
+  
+app/controllers/articles_controller.rb:42:in `destroy'
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:46:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 25.8ms | Allocations: 1088)
+  Rendered articles/show.html.erb within layouts/application (Duration: 54.7ms | Allocations: 2010)
+  Rendered layout layouts/application.html.erb (Duration: 103.0ms | Allocations: 4223)
+Completed 200 OK in 140ms (Views: 108.3ms | ActiveRecord: 6.1ms | Allocations: 5225)
+
+
+Started GET "/articles/" for 172.20.0.1 at 2022-07-11 16:47:01 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 50.4ms | Allocations: 1219)
+  Rendered layout layouts/application.html.erb (Duration: 115.7ms | Allocations: 3586)
+Completed 200 OK in 136ms (Views: 120.3ms | ActiveRecord: 6.8ms | Allocations: 3922)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:47:03 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.1ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 23.2ms | Allocations: 1080)
+  Rendered articles/show.html.erb within layouts/application (Duration: 51.7ms | Allocations: 2001)
+  Rendered layout layouts/application.html.erb (Duration: 89.0ms | Allocations: 4201)
+Completed 200 OK in 113ms (Views: 92.2ms | ActiveRecord: 4.8ms | Allocations: 5206)
+
+
+Started DELETE "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:47:07 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (3.8ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+Completed 404 Not Found in 37ms (ActiveRecord: 3.8ms | Allocations: 1146)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=ggggggddddddddd):
+  
+app/controllers/articles_controller.rb:42:in `destroy'
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:47:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (4.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 38.3ms | Allocations: 1084)
+  Rendered articles/show.html.erb within layouts/application (Duration: 79.5ms | Allocations: 2005)
+  Rendered layout layouts/application.html.erb (Duration: 137.5ms | Allocations: 4218)
+Completed 200 OK in 181ms (Views: 143.7ms | ActiveRecord: 7.1ms | Allocations: 5221)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:49:17 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (5.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (3.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 145.7ms | Allocations: 7712)
+  Rendered layout layouts/application.html.erb (Duration: 572.2ms | Allocations: 41583)
+Completed 200 OK in 737ms (Views: 616.1ms | ActiveRecord: 24.1ms | Allocations: 49934)
+
+
+Started GET "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:49:21 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.6ms | Allocations: 24)
+  Rendered comments/_form.html.erb (Duration: 115.4ms | Allocations: 8199)
+  Rendered articles/show.html.erb within layouts/application (Duration: 239.4ms | Allocations: 16640)
+  Rendered layout layouts/application.html.erb (Duration: 261.2ms | Allocations: 18838)
+Completed 200 OK in 303ms (Views: 260.4ms | ActiveRecord: 12.2ms | Allocations: 20581)
+
+
+Started DELETE "/articles/ggggggddddddddd" for 172.20.0.1 at 2022-07-11 16:49:25 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"ggggggddddddddd"}
+  [1m[36mArticle Load (2.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'ggggggddddddddd' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mComment Load (4.6ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mArticle Destroy (2.4ms)[0m  [1m[31mDELETE FROM `articles` WHERE `articles`.`id` = 1[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+Redirected to http://0.0.0.0:3000/
+Completed 303 See Other in 98ms (ActiveRecord: 21.8ms | Allocations: 3597)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:49:25 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (4.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 33.5ms | Allocations: 1154)
+  Rendered layout layouts/application.html.erb (Duration: 81.0ms | Allocations: 3516)
+Completed 200 OK in 92ms (Views: 79.5ms | ActiveRecord: 7.2ms | Allocations: 3909)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 16:49:27 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 45.4ms | Allocations: 1981)
+  Rendered articles/new.html.erb within layouts/application (Duration: 53.0ms | Allocations: 2242)
+  Rendered layout layouts/application.html.erb (Duration: 88.2ms | Allocations: 4448)
+Completed 200 OK in 102ms (Views: 94.1ms | ActiveRecord: 0.0ms | Allocations: 4880)
+
+
+Started GET "/articles/new" for 172.20.0.1 at 2022-07-11 16:49:32 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 23.9ms | Allocations: 1279)
+  Rendered articles/new.html.erb within layouts/application (Duration: 26.8ms | Allocations: 1352)
+  Rendered layout layouts/application.html.erb (Duration: 82.1ms | Allocations: 3558)
+Completed 200 OK in 93ms (Views: 87.9ms | ActiveRecord: 0.0ms | Allocations: 3925)
+
+
+Started POST "/articles" for 172.20.0.1 at 2022-07-11 16:49:38 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"hjhjgggggggggggj", "body"=>"nnnnnnnnnnnnnnnnnnnnnnn", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (7.5ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`) VALUES ('hjhjgggggggggggj', 'nnnnnnnnnnnnnnnnnnnnnnn', '2022-07-11 16:49:38.448380', '2022-07-11 16:49:38.448380', 'public')[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (14.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://0.0.0.0:3000/articles/hjhjgggggggggggj
+Completed 302 Found in 72ms (ActiveRecord: 22.6ms | Allocations: 3389)
+
+
+Started GET "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:49:38 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (2.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (1.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 20.7ms | Allocations: 1071)
+  Rendered articles/show.html.erb within layouts/application (Duration: 43.4ms | Allocations: 2043)
+  Rendered layout layouts/application.html.erb (Duration: 75.5ms | Allocations: 4240)
+Completed 200 OK in 103ms (Views: 80.8ms | ActiveRecord: 4.6ms | Allocations: 5248)
+
+
+Started POST "/articles/hjhjgggggggggggj/comments" for 172.20.0.1 at 2022-07-11 16:49:46 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"ggggggggggggggggggggggg", "body"=>"kkkkkkkkkkkkkkkkkkkkkkkkk"}, "commit"=>"Create Comment", "article_id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (2.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mComment Create (2.3ms)[0m  [1m[32mINSERT INTO `comments` (`commenter`, `body`, `article_id`, `created_at`, `updated_at`, `status`) VALUES ('ggggggggggggggggggggggg', 'kkkkkkkkkkkkkkkkkkkkkkkkk', 2, '2022-07-11 16:49:46.566999', '2022-07-11 16:49:46.566999', NULL)[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (10.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+Redirected to http://0.0.0.0:3000/articles/hjhjgggggggggggj
+Completed 302 Found in 87ms (ActiveRecord: 17.1ms | Allocations: 4010)
+
+
+Started GET "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:49:46 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 11.5ms | Allocations: 416)
+  Rendered comments/_form.html.erb (Duration: 20.6ms | Allocations: 1074)
+  Rendered articles/show.html.erb within layouts/application (Duration: 62.5ms | Allocations: 2572)
+  Rendered layout layouts/application.html.erb (Duration: 92.7ms | Allocations: 4769)
+Completed 200 OK in 119ms (Views: 96.5ms | ActiveRecord: 5.2ms | Allocations: 5777)
+
+
+Started DELETE "/articles/hjhjgggggggggggj/comments/1" for 172.20.0.1 at 2022-07-11 16:49:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"hjhjgggggggggggj", "id"=>"1"}
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:13:in `destroy'
+  [1m[36mComment Load (3.2ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2 AND `comments`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:14:in `destroy'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mComment Destroy (2.3ms)[0m  [1m[31mDELETE FROM `comments` WHERE `comments`.`id` = 1[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+Redirected to http://0.0.0.0:3000/articles/hjhjgggggggggggj
+Completed 303 See Other in 106ms (ActiveRecord: 19.5ms | Allocations: 3332)
+
+
+Started GET "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:49:51 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (4.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (2.5ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 28.9ms | Allocations: 1059)
+  Rendered articles/show.html.erb within layouts/application (Duration: 58.6ms | Allocations: 1983)
+  Rendered layout layouts/application.html.erb (Duration: 100.8ms | Allocations: 4180)
+Completed 200 OK in 129ms (Views: 102.4ms | ActiveRecord: 6.6ms | Allocations: 5188)
+
+
+Started GET "/articles/hjhjgggggggggggj/edit" for 172.20.0.1 at 2022-07-11 16:49:55 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#edit as HTML
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (3.6ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:28:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/edit.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 21.4ms | Allocations: 1378)
+  Rendered articles/edit.html.erb within layouts/application (Duration: 30.0ms | Allocations: 1575)
+  Rendered layout layouts/application.html.erb (Duration: 66.4ms | Allocations: 3772)
+Completed 200 OK in 97ms (Views: 73.7ms | ActiveRecord: 3.6ms | Allocations: 4852)
+
+
+Started PATCH "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:49:57 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"hjhjgggggggggggj", "body"=>"nnnnnnnnnnnnnnnnnnnnnnn", "status"=>"public"}, "commit"=>"Update Article", "id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:32:in `update'
+Redirected to http://0.0.0.0:3000/articles/hjhjgggggggggggj
+Completed 302 Found in 44ms (ActiveRecord: 1.7ms | Allocations: 1424)
+
+
+Started GET "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:49:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (6.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (1.9ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 23.8ms | Allocations: 1073)
+  Rendered articles/show.html.erb within layouts/application (Duration: 48.8ms | Allocations: 1998)
+  Rendered layout layouts/application.html.erb (Duration: 80.1ms | Allocations: 4211)
+Completed 200 OK in 114ms (Views: 84.7ms | ActiveRecord: 8.6ms | Allocations: 5223)
+
+
+Started POST "/articles/hjhjgggggggggggj/comments" for 172.20.0.1 at 2022-07-11 16:50:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"nhnnnnnnnnnnnnnnn", "body"=>"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}, "commit"=>"Create Comment", "article_id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (1.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mComment Create (2.2ms)[0m  [1m[32mINSERT INTO `comments` (`commenter`, `body`, `article_id`, `created_at`, `updated_at`, `status`) VALUES ('nhnnnnnnnnnnnnnnn', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 2, '2022-07-11 16:50:08.938656', '2022-07-11 16:50:08.938656', NULL)[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:8:in `create'
+Redirected to http://0.0.0.0:3000/articles/hjhjgggggggggggj
+Completed 302 Found in 75ms (ActiveRecord: 14.5ms | Allocations: 3187)
+
+
+Started GET "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:50:09 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (3.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (6.0ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 2.7ms | Allocations: 182)
+  Rendered comments/_form.html.erb (Duration: 25.8ms | Allocations: 1074)
+  Rendered articles/show.html.erb within layouts/application (Duration: 55.5ms | Allocations: 2216)
+  Rendered layout layouts/application.html.erb (Duration: 92.8ms | Allocations: 4426)
+Completed 200 OK in 119ms (Views: 93.0ms | ActiveRecord: 9.1ms | Allocations: 5434)
+
+
+Started DELETE "/articles/hjhjgggggggggggj/comments/2" for 172.20.0.1 at 2022-07-11 16:50:12 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by CommentsController#destroy as TURBO_STREAM
+  Parameters: {"article_id"=>"hjhjgggggggggggj", "id"=>"2"}
+  [1m[36mArticle Load (3.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:13:in `destroy'
+  [1m[36mComment Load (2.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2 AND `comments`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/comments_controller.rb:14:in `destroy'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mComment Destroy (3.5ms)[0m  [1m[31mDELETE FROM `comments` WHERE `comments`.`id` = 2[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (16.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:15:in `destroy'
+Redirected to http://0.0.0.0:3000/articles/hjhjgggggggggggj
+Completed 303 See Other in 109ms (ActiveRecord: 27.3ms | Allocations: 3250)
+
+
+Started GET "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:50:12 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (3.0ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (3.8ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 1.1ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 23.9ms | Allocations: 1068)
+  Rendered articles/show.html.erb within layouts/application (Duration: 49.2ms | Allocations: 1992)
+  Rendered layout layouts/application.html.erb (Duration: 84.0ms | Allocations: 4189)
+Completed 200 OK in 112ms (Views: 84.7ms | ActiveRecord: 6.9ms | Allocations: 5197)
+
+
+Started DELETE "/articles/hjhjgggggggggggj" for 172.20.0.1 at 2022-07-11 16:50:17 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"hjhjgggggggggggj"}
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'hjhjgggggggggggj' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mComment Load (3.4ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mArticle Destroy (3.5ms)[0m  [1m[31mDELETE FROM `articles` WHERE `articles`.`id` = 2[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:43:in `destroy'
+Redirected to http://0.0.0.0:3000/
+Completed 303 See Other in 97ms (ActiveRecord: 19.4ms | Allocations: 3334)
+
+
+Started GET "/" for 172.20.0.1 at 2022-07-11 16:50:17 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ArticlesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (2.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 36.9ms | Allocations: 1154)
+  Rendered layout layouts/application.html.erb (Duration: 84.0ms | Allocations: 3523)
+Completed 200 OK in 99ms (Views: 89.9ms | ActiveRecord: 4.0ms | Allocations: 3866)
+
+

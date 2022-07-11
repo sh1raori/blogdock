@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title
   include Visible
 
   has_many :comments, dependent: :destroy
